@@ -1,4 +1,4 @@
-number = int(input("Enter a number to generate its multiplication table: "))
-for i in range(1, 11):
-    product = number * i
-    print(f"{number} x {i} = {product}")
+x = int(input("Enter a number to generate its multiplication table: "))
+for y in range(1, 11):
+    z = x * y
+    print(f"{x} x {y} = {z}")
