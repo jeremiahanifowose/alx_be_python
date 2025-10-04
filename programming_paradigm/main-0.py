@@ -1,28 +1,38 @@
-import sys
+# main-0.py
+
 from bank_account import BankAccount
 
 def main():
-    account = BankAccount(100)  # Example starting balance
-    if len(sys.argv) < 2:
-        print("Usage: python main-0.py <command>:<amount>")
-        print("Commands: deposit, withdraw, display")
-        sys.exit(1)
+    account = BankAccount(100)  # Starting with $100
+    print("Welcome to your Bank Account!")
+    print("Available commands: deposit, withdraw, display, quit")
 
-    command, *params = sys.argv[1].split(':')
-    amount = float(params[0]) if params else None
+    while True:
+        command = input("\nEnter a command: ").strip().lower()
 
-    if command == "deposit" and amount is not None:
-        account.deposit(amount)
-        print(f"Deposited: ${amount}")
-    elif command == "withdraw" and amount is not None:
-        if account.withdraw(amount):
-            print(f"Withdrew: ${amount}")
+        if command == "deposit":
+            try:
+                amount = float(input("Enter amount to deposit: "))
+                account.deposit(amount)
+            except ValueError:
+                print("Invalid input. Please enter a numeric value.")
+
+        elif command == "withdraw":
+            try:
+                amount = float(input("Enter amount to withdraw: "))
+                account.withdraw(amount)
+            except ValueError:
+                print("Invalid input. Please enter a numeric value.")
+
+        elif command == "display":
+            account.display_balance()
+
+        elif command == "quit":
+            print("Goodbye!")
+            break
+
         else:
-            print("Insufficient funds.")
-    elif command == "display":
-        account.display_balance()
-    else:
-        print("Invalid command.")
+            print("Invalid command. Please try again.")
 
 if __name__ == "__main__":
     main()

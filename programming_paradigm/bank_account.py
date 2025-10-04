@@ -2,7 +2,7 @@
 
 class BankAccount:
     def __init__(self, initial_balance=0):
-        """Initialize account with an optional starting balance (default 0)."""
+        """Initialize account with an optional starting balance."""
         self.__account_balance = initial_balance
 
     def deposit(self, amount):
@@ -14,7 +14,7 @@ class BankAccount:
             print("Deposit amount must be positive.")
 
     def withdraw(self, amount):
-        """Withdraw money from the account if funds are sufficient."""
+        """Withdraw money if funds are sufficient."""
         if amount <= 0:
             print("Withdrawal amount must be positive.")
             return
@@ -25,34 +25,6 @@ class BankAccount:
             print("Insufficient funds.")
 
     def display_balance(self):
-        """Show the current account balance."""
+        """Display the current balance."""
         print(f"Current Balance: ${self.__account_balance}")
 
-
-def main():
-    account = BankAccount(100)  # starting with $100
-
-    while True:
-        command = input("\nEnter command (deposit, withdraw, display, quit): ").strip().lower()
-
-        if command == "deposit":
-            amount = float(input("Enter amount to deposit: "))
-            account.deposit(amount)
-
-        elif command == "withdraw":
-            amount = float(input("Enter amount to withdraw: "))
-            account.withdraw(amount)
-
-        elif command == "display":
-            account.display_balance()
-
-        elif command == "quit":
-            print("Goodbye!")
-            break
-
-        else:
-            print("Invalid command. Please try again.")
-
-
-if __name__ == "__main__":
-    main()    
