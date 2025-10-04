@@ -1,20 +1,24 @@
-# main.py
-from robust_division_calculator import safe_divide
+from library_management import Book, Library
 
 def main():
-    print("=== Robust Division Calculator ===")
-    while True:
-        numerator = input("Enter numerator (or 'q' to quit): ").strip()
-        if numerator.lower() == 'q':
-            print("Goodbye!")
-            break
+    # Setup a small library
+    library = Library()
+    library.add_book(Book("Brave New World", "Aldous Huxley"))
+    library.add_book(Book("1984", "George Orwell"))
 
-        denominator = input("Enter denominator: ").strip()
+    # Initial list of available books
+    print("Available books after setup:")
+    library.list_available_books()
 
-        result = safe_divide(numerator, denominator)
-        print(result)
-        print()  # blank line for readability
+    # Simulate checking out a book
+    library.check_out_book("1984")
+    print("\nAvailable books after checking out '1984':")
+    library.list_available_books()
 
+    # Simulate returning a book
+    library.return_book("1984")
+    print("\nAvailable books after returning '1984':")
+    library.list_available_books()
 
 if __name__ == "__main__":
     main()
